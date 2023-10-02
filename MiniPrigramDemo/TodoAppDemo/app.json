@@ -1,0 +1,11 @@
+{
+  "pages": [
+    "pages/todos/todos"
+  ],
+  "window": {
+    "defaultTitle": "TodoAppDemo"
+  },
+  "behavior": {
+    "requestReferrerStrategy": "page"
+  }
+}
