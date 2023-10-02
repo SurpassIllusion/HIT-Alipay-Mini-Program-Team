@@ -1,0 +1,46 @@
+<view class="todo_container">
+  <view class="header">
+
+    <input
+      class="new-todo"
+      value="{{input}}"
+      placeholder="添加任务"
+      onInput="inputChangeHandle"
+      onConfirm="addTodoHandle"
+      confirm-type="done"
+    />
+    <image a:if="{{input}}" class="plus" onTap="addTodoHandle" src="/images/yes.png" />
+  </view>
+  <block a:if="{{ todos.length }}">
+    <view class="footer">
+      <image class="btn" onTap="toggleAllHandle" src="/images/allselect.png" />
+      <text a:if="{{ leftCount }}" class="foottext">
+        剩 {{ leftCount }} {{ leftCount === 1 ? '个' : '个' }}任务待完成
+      </text>
+      <image
+        a:if="{{ todos.length > leftCount }}"
+        class="btn"
+        onTap="clearCompletedHandle"
+        src="/images/delete.png"
+      />
+    </view>
+    <view class="todos">
+      <view
+        a:for="{{ todos }}"
+        class="item{{ item.completed ? ' completed' : '' }}"
+        a:key="{{ index }}"
+        onTap="toggleTodoHandle"
+        data-index="{{ index }}"
+      >
+        <icon class="checkbox" type="{{ item.completed ? 'success' : 'circle' }}" />
+        <text class="name">{{ item.name }}</text>
+      </view>
+    </view>
+  </block>
+  <block a:else>
+    <view class="nodata">
+      <image class="nodata_img" src="/images/nodata.png"></image>
+      <text class="nodata_text">来添加一些待办事项吧</text>
+    </view>
+  </block>
+</view>
